@@ -12,11 +12,11 @@
 
         //METHODS
         public function createUser($user){
-            //ENCRIPTAR LA CONTRASEÑA
             $statement = $this->db->prepare("INSERT INTO user VALUES(NULL, :nom, :ape, :cor, :con, :usu, 2)");
-            $statement->execute(array(':nom' => $user->getName(), ':ape' => $user->getLastName(), ':cor' => $user->getEmail(),
-                                        ':con' => $user->getPassword(), ':usu' => $user->getUserName())
-            );
+            $statement->execute(array(':nom' => $user->getName(), ':ape' => $user->getLastName(), 
+                ':cor' => $user->getEmail(), ':con' => $user->getPassword(), 
+                ':usu' => $user->getUserName()
+            ));
 
             if($statement->rowCount() > 0){
                 return true;

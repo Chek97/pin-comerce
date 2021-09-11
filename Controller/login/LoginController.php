@@ -20,7 +20,7 @@
         $objUser = new UserActions();    
         $newUser = new User($data['name'], $data['lastName'], 
             $data['email'], $data['userName'], 
-            $data['password']
+            password_hash($data['password'], PASSWORD_DEFAULT)
         );
 
         if($objUser->createUser($newUser) == true){
