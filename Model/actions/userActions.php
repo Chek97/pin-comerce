@@ -25,6 +25,17 @@
             }
             
         }
+
+        public function getUser($userName){
+            $statement = $this->db->prepare("SELECT * FROM user WHERE user_name= :use");
+            $statement->execute(array(':use' => $userName));
+
+            if($statement->rowCount() > 0){
+                return $statement->fetch(PDO::FETCH_ASSOC);
+            }else {
+                return false;
+            }
+        }
     }
 
 
