@@ -9,6 +9,9 @@
             case 'create':
                 createUser($_POST);
                 break;
+            case 'auth':
+                loginUser($_POST);
+                break;
             default:
                 echo('Comando no aceptado');
                 break;
@@ -24,9 +27,47 @@
         );
 
         if($objUser->createUser($newUser) == true){
-            echo('Usuario creado con exito');
+            session_start();
+            $_SESSION['message'] = 'El usuario fue creado con exito';
+            $_SESSION['status'] = 'success'; 
+            header('location: ../../View/login/register.php');
         }else {
-            echo('El usuario no fue creado');
+            session_start();
+            $_SESSION['message'] = 'El usuario no pudo ser creado, intentalo de nuevo';
+            $_SESSION['status'] = 'danger';
+            header('location: ../../View/login/register.php');
+        }
+    }
+
+    function loginUser($data){
+        $objUser = new UserActions();
+        $userFinded = $objUser->getUser($data['userName']);
+        if($userFinded != false){
+            if(password_verify($data['password'], $userFinded['password'])){
+                session_start();
+                $_SESSION['user'] = array('id' => $userFinded['id'], 'name' => $userFinded['name'], 
+                    'last_name' => $userFinded['last_name'], 'email' => $userFinded['email'],
+                    'rol_id' => $userFinded['rol_id']
+                );
+                autenticatedRole($userFinded['rol_id']);                
+            }else{
+                session_start();
+                $_SESSION['message'] = 'El usuario y/o contraseña no son correctos';
+                header('location: ../../View/login/login.php');
+            }
+        }else{
+            session_start();
+            $_SESSION['message'] = 'El usuario y/o contraseña no son correctos';
+            header('location: ../../View/login/login.php');
+        }
+        
+    }
+
+    function autenticatedRole($role){
+        if($role == 1){
+            header('location: ../../View/admin/dashboard.php');
+        }else{
+            header('location: ../../View/main/home.php');
         }
     }
 
