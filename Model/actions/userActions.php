@@ -36,6 +36,23 @@
                 return false;
             }
         }
+
+        public function getAllUsers(){
+            $statement = $this->db->prepare("SELECT * FROM user");
+            $statement->execute(array());
+
+            $list = array();
+
+            if($statement->rowCount() > 0){
+                while($row = $statement->fetch(PDO::FETCH_ASSOC)){
+                    $list[] = $row;
+                }
+
+                return $list;
+            }else{
+                return 0;
+            }
+        }
     }
 
 
