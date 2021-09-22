@@ -53,6 +53,17 @@
                 return 0;
             }
         }
+
+        public function deleteUser($id){
+            $statement = $this->db->prepare('DELETE FROM user WHERE id= :id');
+            $statement->execute(array(':id' => $id));
+
+            if($statement->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }
 
 

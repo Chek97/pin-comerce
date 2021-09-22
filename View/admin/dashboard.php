@@ -19,7 +19,7 @@
             </header>
             <div>
                 <div class="list-group">
-                    <a href="../shared/userList.php" class="list-group-item list-group-item-action">Usuarios</a>
+                    <a href="./userDashboard.php" class="list-group-item list-group-item-action">Usuarios</a>
                     <a href="#" class="list-group-item list-group-item-action">Categorias</a>
                     <a href="#" class="list-group-item list-group-item-action">Productos</a>
                     <a href="#" class="list-group-item list-group-item-action">Descuentos</a>
