@@ -61,7 +61,7 @@
                                     <td><?php echo ($user['user_name']); ?></td>
                                     <td><?php echo ($user['email']); ?></td>
                                     <td colspan="3">
-                                        <a href="#"><button class="btn btn-warning">Actualizar</button></a>
+                                        <a href="./userDashboard.php?a=update&key=<?php echo($user['id']); ?>"><button class="btn btn-warning">Actualizar</button></a>
                                         <a href="#"><button class="btn btn-success">Ver</button></a>
                                         <a href="../../Controller/user/UserController.php?act=delete&key=<?php echo($user['id']); ?>"><button class="btn btn-danger">Borrar</button></a>
                                     </td>
