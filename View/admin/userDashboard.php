@@ -61,8 +61,10 @@
                                     <td><?php echo ($user['user_name']); ?></td>
                                     <td><?php echo ($user['email']); ?></td>
                                     <td colspan="3">
+                                        <!-- MOSTRAR EL VER DE LA INFORMACION DEL USUARIO
+                                        VALIDAR FORMULARIOS -->
                                         <a href="./userDashboard.php?a=update&key=<?php echo($user['id']); ?>"><button class="btn btn-warning">Actualizar</button></a>
-                                        <a href="#"><button class="btn btn-success">Ver</button></a>
+                                        <a href="./userDashboard.php?a=get&key=<?php echo($user['id']); ?>"><button class="btn btn-success">Ver</button></a>
                                         <a href="../../Controller/user/UserController.php?act=delete&key=<?php echo($user['id']); ?>"><button class="btn btn-danger">Borrar</button></a>
                                     </td>
                                 </tr>
@@ -74,7 +76,11 @@
                 </div>
                 <?php 
                     if(isset($_GET['a'])){
-                        include('../shared/userForm.php');
+                        if($_GET['a'] == 'create' || $_GET['a'] == 'update'){
+                            include('../shared/userForm.php');
+                        }else {
+                            include('../shared/showUser.php');
+                        }
                 ?>
                 <?php } else { ?>
                     <div>

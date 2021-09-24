@@ -70,4 +70,9 @@
     if(isset($_GET['key']) && $_GET['a'] == 'update'){
         $userFinded = getUser($_GET['key']);
     }
+
+    if(isset($_GET['key']) && $_GET['a'] == 'get'){
+        $userFinded = getUser($_GET['key']);
+        $showUser = new User($userFinded['name'], $userFinded['last_name'], $userFinded['email'], $userFinded['user_name'], $userFinded['password']);
+    }
 ?>
