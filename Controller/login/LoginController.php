@@ -29,13 +29,21 @@
         if($objUser->createUser($newUser) == true){
             session_start();
             $_SESSION['message'] = 'El usuario fue creado con exito';
-            $_SESSION['status'] = 'success'; 
-            header('location: ../../View/login/register.php');
+            $_SESSION['status'] = 'success';
+            if(isset($_GET['key'])){
+                header('location: ../../View/admin/userDashboard.php');
+            }else{
+                header('location: ../../View/login/register.php');
+            }
         }else {
             session_start();
             $_SESSION['message'] = 'El usuario no pudo ser creado, intentalo de nuevo';
             $_SESSION['status'] = 'danger';
-            header('location: ../../View/login/register.php');
+            if(isset($_GET['key'])){
+                header('../../View/admin/userDashboard.php?a=create');
+            }else{
+                header('location: ../../View/login/register.php');
+            }
         }
     }
 
